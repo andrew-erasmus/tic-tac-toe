@@ -88,7 +88,7 @@ function startGame(board) {
     let p1Score = document.getElementById("p1-score");
     p1Score.innerHTML = 0;
     let p2Score = document.getElementById("p2-score");
-    p1Score.innerHTML = 0;
+    p2Score.innerHTML = 0;
   };
 
   const addScore = (player) => {
