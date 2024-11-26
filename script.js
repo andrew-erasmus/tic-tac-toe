@@ -18,9 +18,8 @@ function startGame(board) {
 
       if (isWin()) {
         displayWinner(player.name + " Wins!!");
-      }
-
-      if (isDraw()) {
+        addScore(player);
+      } else if (isDraw()) {
         displayWinner("The game is a draw!!");
       }
     } else {
@@ -76,6 +75,18 @@ function startGame(board) {
     });
     gameboard = generateGameBoard();
     resetTurn();
+  };
+
+  const addScore = (player) => {
+    if (player.name === "Player 1") {
+      player.score++;
+      let p1Score = document.getElementById("p1-score");
+      p1Score.innerHTML = player.score;
+    } else if (player.name === "Player 2") {
+      player.score++;
+      let p2Score = document.getElementById("p2-score");
+      p2Score.innerHTML = player.score;
+    }
   };
 
   return {
@@ -156,7 +167,7 @@ function generateO(tile) {
 }
 
 function createPlayer(name, symbol) {
-  return { name, symbol };
+  return { name, symbol, score: 0 };
 }
 
 function checkWin(array) {

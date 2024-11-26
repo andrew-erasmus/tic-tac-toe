@@ -31,7 +31,7 @@ h1{
 }
 
 .game-board{
-    margin-top: 70px;
+    margin-top: 15px;
     width: 500px;
     height: 500px;
     background-color: #7789AB;
@@ -46,14 +46,6 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.cross{
-    /* display: none; */
-}
-
-.nought{
-    /* display: none; */
 }
 
 svg path{
@@ -129,3 +121,6 @@ svg polygon{
     }
   }
   
+  td{
+    padding: 8px;
+  }
