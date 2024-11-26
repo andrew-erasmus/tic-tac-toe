@@ -124,3 +124,8 @@ svg polygon{
   td{
     padding: 8px;
   }
+
+  #p1-score{
+    border-right: solid #000 1px;
+    border-collapse: collapse;
+  }

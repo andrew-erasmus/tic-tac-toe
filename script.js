@@ -17,10 +17,10 @@ function startGame(board) {
       }
 
       if (isWin()) {
-        displayWinner(player.name + " Wins!!");
+        displayMessage(player.name + " Wins!!");
         addScore(player);
       } else if (isDraw()) {
-        displayWinner("The game is a draw!!");
+        displayMessage("The game is a draw!!");
       }
     } else {
       console.log("Cannot make move, space already occupied");
@@ -77,15 +77,32 @@ function startGame(board) {
     resetTurn();
   };
 
+  const resetGame = () => {
+    resetBoard();
+    resetTurn();
+    player1.score = 0;
+    player2.score = 0;
+  };
+
   const addScore = (player) => {
     if (player.name === "Player 1") {
       player.score++;
       let p1Score = document.getElementById("p1-score");
       p1Score.innerHTML = player.score;
+      if (player.score === 5) {
+        displayMessage("5 points reached - Player 1 wins the game.");
+        resetGame();
+        p1Score.innerHTML = 0;
+      }
     } else if (player.name === "Player 2") {
       player.score++;
       let p2Score = document.getElementById("p2-score");
       p2Score.innerHTML = player.score;
+      if (player.score === 5) {
+        displayMessage("5 points reached - Player 2 wins the game.");
+        resetGame();
+        p2Score.innerHTML = 0;
+      }
     }
   };
 
@@ -97,6 +114,7 @@ function startGame(board) {
     isDraw,
     isWin,
     resetBoard,
+    resetGame,
     tiles,
     turn,
   };
@@ -245,20 +263,23 @@ function getCoord(element) {
   }
 }
 
-function displayWinner(winnerMsg) {
+function displayMessage(message) {
   // Get modal and trigger button elements
   const modal = document.getElementById("modal");
   const closeButton = document.querySelector(".close-button");
 
   const title = document.getElementById("modal-title");
-  const message = document.getElementById("modal-message");
+  const messageParagraph = document.getElementById("modal-message");
 
-  if (winnerMsg.includes("draw")) {
+  if (message.includes("draw")) {
     title.innerHTML = "Good Game.";
-    message.innerHTML = winnerMsg;
-  } else {
+    messageParagraph.innerHTML = message;
+  } else if (message.includes("Wins!!")) {
     title.innerHTML = "Congratulations!";
-    message.innerHTML = winnerMsg;
+    messageParagraph.innerHTML = message;
+  } else {
+    title.innerHTML = "5 Points Reached!";
+    messageParagraph.innerHTML = message;
   }
 
   modal.style.display = "flex"; // Show modal
