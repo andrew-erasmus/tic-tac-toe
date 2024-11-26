@@ -129,3 +129,13 @@ svg polygon{
     border-right: solid #000 1px;
     border-collapse: collapse;
   }
+
+  button{
+    position: absolute;
+    left:90%;
+    top: 90%;
+    background-color: #C7f022;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+  }

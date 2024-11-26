@@ -22,7 +22,10 @@ function startGame(board) {
       } else if (isDraw()) {
         displayMessage("The game is a draw!!");
       }
+
+      return true;
     } else {
+      return false;
       console.log("Cannot make move, space already occupied");
     }
   };
@@ -82,6 +85,10 @@ function startGame(board) {
     resetTurn();
     player1.score = 0;
     player2.score = 0;
+    let p1Score = document.getElementById("p1-score");
+    p1Score.innerHTML = 0;
+    let p2Score = document.getElementById("p2-score");
+    p1Score.innerHTML = 0;
   };
 
   const addScore = (player) => {
@@ -207,15 +214,34 @@ game.tiles.forEach((item) => {
     if (game.turn % 2 == 1) {
       //player 1 turn
       let coordinates = getCoord(item);
-      game.makeMove(coordinates.row, coordinates.col, game.player1, item);
-      game.turn++;
+      let result = game.makeMove(
+        coordinates.row,
+        coordinates.col,
+        game.player1,
+        item
+      );
+      if (result === true) {
+        game.turn++;
+      }
     } else {
       //player 2 turn
       let coordinates = getCoord(item);
-      game.makeMove(coordinates.row, coordinates.col, game.player2, item);
-      game.turn++;
+      let result = game.makeMove(
+        coordinates.row,
+        coordinates.col,
+        game.player2,
+        item
+      );
+      if (result === true) {
+        game.turn++;
+      }
     }
   });
+});
+
+let resetBtn = document.getElementById("reset");
+resetBtn.addEventListener("click", () => {
+  game.resetGame();
 });
 
 function getCoord(element) {
