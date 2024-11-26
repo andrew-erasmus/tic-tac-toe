@@ -43,6 +43,18 @@ h1{
 
 .grid-item{
     border: solid black 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cross{
+    display: none;
+
+}
+
+.nought{
+    display: none;
 }
 
 .grid-item:hover{
