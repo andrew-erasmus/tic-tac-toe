@@ -8,11 +8,11 @@ function startGame(board) {
   const makeMove = (row, col, player) => {
     if (gameboard.board[row][col] === " ") {
       gameboard.board[row][col] = player.symbol;
-      if (isWin(player.symbol)) {
-        console.log(player.name + " wins!!");
+      if (isWin()) {
+        console.log(player.name + " Wins!!");
       }
 
-      if (isDraw(player.symbol)) {
+      if (isDraw()) {
         console.log("The game is a draw");
       }
     } else {
@@ -33,35 +33,33 @@ function startGame(board) {
     }
   };
 
-  const isWin = (symbol) => {
-    if (symbol === "X") {
-      for (let index = 0; index < gameboard.board.length; index++) {
-        let rowArr = gameboard.board[index];
-        if (checkWin(rowArr)) return true;
-      }
-
-      for (let i = 0; i < gameboard.board.length; i++) {
-        let colArr = [];
-        for (let j = 0; j < gameboard.board.length; j++) {
-          colArr.push(gameboard.board[j][i]);
-        }
-        if (checkWin(colArr)) return true;
-      }
-
-      let diagArr1 = [
-        gameboard.board[0][0],
-        gameboard.board[1][1],
-        gameboard.board[2][2],
-      ];
-      let diagArr2 = [
-        gameboard.board[2][0],
-        gameboard.board[1][1],
-        gameboard.board[0][2],
-      ];
-      if (checkWin(diagArr1)) return true;
-      if (checkWin(diagArr2)) return true;
-    } else {
+  const isWin = () => {
+    for (let index = 0; index < gameboard.board.length; index++) {
+      let rowArr = gameboard.board[index];
+      if (checkWin(rowArr)) return true;
     }
+
+    for (let i = 0; i < gameboard.board.length; i++) {
+      let colArr = [];
+      for (let j = 0; j < gameboard.board.length; j++) {
+        colArr.push(gameboard.board[j][i]);
+      }
+      if (checkWin(colArr)) return true;
+    }
+
+    let diagArr1 = [
+      gameboard.board[0][0],
+      gameboard.board[1][1],
+      gameboard.board[2][2],
+    ];
+    let diagArr2 = [
+      gameboard.board[2][0],
+      gameboard.board[1][1],
+      gameboard.board[0][2],
+    ];
+    if (checkWin(diagArr1)) return true;
+    if (checkWin(diagArr2)) return true;
+
     return false;
   };
   const updateBoard = () => {};
@@ -71,7 +69,7 @@ function startGame(board) {
 
 function generateGameBoard() {
   let board = [
-    [" ", "X", "X"],
+    ["O", "X", "X"],
     [" ", "O", " "],
     ["X", " ", " "],
   ];
